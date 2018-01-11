@@ -4,18 +4,17 @@ const TextEditor = require('./text-editor')
 const ScopeDescriptor = require('./scope-descriptor')
 
 const EDITOR_PARAMS_BY_SETTING_KEY = [
-  // Columns: settingsKey, paramName, preserveSetting
   ['core.fileEncoding', 'encoding'],
-  ['editor.atomicSoftTabs', 'atomicSoftTabs', true],
-  ['editor.showInvisibles', 'showInvisibles', true],
-  ['editor.tabLength', 'tabLength', true],
+  ['editor.atomicSoftTabs', 'atomicSoftTabs'],
+  ['editor.showInvisibles', 'showInvisibles'],
+  ['editor.tabLength', 'tabLength'],
   ['editor.invisibles', 'invisibles'],
   ['editor.showCursorOnSelection', 'showCursorOnSelection'],
   ['editor.showIndentGuide', 'showIndentGuide'],
   ['editor.showLineNumbers', 'showLineNumbers'],
-  ['editor.softWrap', 'softWrapped', true],
-  ['editor.softWrapHangingIndent', 'softWrapHangingIndentLength', true],
-  ['editor.softWrapAtPreferredLineLength', 'softWrapAtPreferredLineLength', true],
+  ['editor.softWrap', 'softWrapped'],
+  ['editor.softWrapHangingIndent', 'softWrapHangingIndentLength'],
+  ['editor.softWrapAtPreferredLineLength', 'softWrapAtPreferredLineLength'],
   ['editor.preferredLineLength', 'preferredLineLength'],
   ['editor.maxScreenLineLength', 'maxScreenLineLength'],
   ['editor.autoIndent', 'autoIndent'],
@@ -225,14 +224,12 @@ class TextEditorRegistry {
       const newSettings = this.textEditorParamsForScope(newLanguageMode.scopeDescriptor);
       const oldSettings = this.textEditorParamsForScope(oldLanguageMode.scopeDescriptor);
 
-      let updatedSettings = {}
-      for (const [settingsKey, paramName, preserveSetting] of EDITOR_PARAMS_BY_SETTING_KEY) {
-        // Log the updated setting if it doesn't need to be preserved or if
-        // it has changed between the two language modes.  This prevents user-
-        // modified settings in an editor (like 'softWrapped') from being reset
-        // when the language mode changes.
-        if (!preserveSetting || !_.isEqual(newSettings[paramName], oldSettings[paramName])) {
-          console.log(`'${paramName}': ${oldSettings[paramName]} --> ${newSettings[paramName]}`)
+      const updatedSettings = {}
+      for (const [settingsKey, paramName] of EDITOR_PARAMS_BY_SETTING_KEY) {
+        // Update the setting only if it has changed between the two language
+        // modes.  This prevents user-modified settings in an editor (like
+        // 'softWrapped') from being reset when the language mode changes.
+        if (!_.isEqual(newSettings[paramName], oldSettings[paramName])) {
           updatedSettings[paramName] = newSettings[paramName]
         }
       }
