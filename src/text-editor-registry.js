@@ -1,19 +1,21 @@
+const _ = require('underscore-plus')
 const {Emitter, Disposable, CompositeDisposable} = require('event-kit')
 const TextEditor = require('./text-editor')
 const ScopeDescriptor = require('./scope-descriptor')
 
 const EDITOR_PARAMS_BY_SETTING_KEY = [
+  // Columns: settingsKey, paramName, preserveSetting
   ['core.fileEncoding', 'encoding'],
-  ['editor.atomicSoftTabs', 'atomicSoftTabs'],
-  ['editor.showInvisibles', 'showInvisibles'],
-  ['editor.tabLength', 'tabLength'],
+  ['editor.atomicSoftTabs', 'atomicSoftTabs', true],
+  ['editor.showInvisibles', 'showInvisibles', true],
+  ['editor.tabLength', 'tabLength', true],
   ['editor.invisibles', 'invisibles'],
   ['editor.showCursorOnSelection', 'showCursorOnSelection'],
   ['editor.showIndentGuide', 'showIndentGuide'],
   ['editor.showLineNumbers', 'showLineNumbers'],
-  ['editor.softWrap', 'softWrapped'],
-  ['editor.softWrapHangingIndent', 'softWrapHangingIndentLength'],
-  ['editor.softWrapAtPreferredLineLength', 'softWrapAtPreferredLineLength'],
+  ['editor.softWrap', 'softWrapped', true],
+  ['editor.softWrapHangingIndent', 'softWrapHangingIndentLength', true],
+  ['editor.softWrapAtPreferredLineLength', 'softWrapAtPreferredLineLength', true],
   ['editor.preferredLineLength', 'preferredLineLength'],
   ['editor.maxScreenLineLength', 'maxScreenLineLength'],
   ['editor.autoIndent', 'autoIndent'],
@@ -147,11 +149,13 @@ class TextEditorRegistry {
     }
     this.editorsWithMaintainedConfig.add(editor)
 
+    this.updateEditorSettingsForLanguageMode(editor)
     this.subscribeToSettingsForEditorScope(editor)
-    const grammarChangeSubscription = editor.onDidChangeGrammar(() => {
+    const languageChangeSubscription = editor.buffer.onDidChangeLanguageMode((newLanguageMode, oldLanguageMode) => {
+      this.updateEditorSettingsForLanguageMode(editor, oldLanguageMode)
       this.subscribeToSettingsForEditorScope(editor)
     })
-    this.subscriptions.add(grammarChangeSubscription)
+    this.subscriptions.add(languageChangeSubscription)
 
     const updateTabTypes = () => {
       const configOptions = {scope: editor.getRootScopeDescriptor()}
@@ -169,8 +173,8 @@ class TextEditorRegistry {
     return new Disposable(() => {
       this.editorsWithMaintainedConfig.delete(editor)
       tokenizeSubscription.dispose()
-      grammarChangeSubscription.dispose()
-      this.subscriptions.remove(grammarChangeSubscription)
+      languageChangeSubscription.dispose()
+      this.subscriptions.remove(languageChangeSubscription)
       this.subscriptions.remove(tokenizeSubscription)
     })
   }
@@ -214,13 +218,39 @@ class TextEditorRegistry {
     atom.grammars.autoAssignLanguageMode(editor.getBuffer())
   }
 
-  async subscribeToSettingsForEditorScope (editor) {
+  updateEditorSettingsForLanguageMode(editor, oldLanguageMode) {
+    const newLanguageMode = editor.buffer.getLanguageMode()
+
+    if (oldLanguageMode) {
+      const newSettings = this.textEditorParamsForScope(newLanguageMode.scopeDescriptor);
+      const oldSettings = this.textEditorParamsForScope(oldLanguageMode.scopeDescriptor);
+
+      let updatedSettings = {}
+      for (const [settingsKey, paramName, preserveSetting] of EDITOR_PARAMS_BY_SETTING_KEY) {
+        // Log the updated setting if it doesn't need to be preserved or if
+        // it has changed between the two language modes.  This prevents user-
+        // modified settings in an editor (like 'softWrapped') from being reset
+        // when the language mode changes.
+        if (!preserveSetting || !_.isEqual(newSettings[paramName], oldSettings[paramName])) {
+          console.log(`'${paramName}': ${oldSettings[paramName]} --> ${newSettings[paramName]}`)
+          updatedSettings[paramName] = newSettings[paramName]
+        }
+      }
+
+      if (_.size(updatedSettings) > 0) {
+        editor.update(updatedSettings)
+      }
+    }
+    else {
+      editor.update(this.textEditorParamsForScope(newLanguageMode.scopeDescriptor))
+    }
+  }
+
+  async subscribeToSettingsForEditorScope (editor, newLanguageMode, oldLanguageMode) {
     await this.initialPackageActivationPromise
 
     const scopeDescriptor = editor.getRootScopeDescriptor()
     const scopeChain = scopeDescriptor.getScopeChain()
-
-    editor.update(this.textEditorParamsForScope(scopeDescriptor))
 
     if (!this.scopesWithConfigSubscriptions.has(scopeChain)) {
       this.scopesWithConfigSubscriptions.add(scopeChain)
