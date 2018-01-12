@@ -148,11 +148,9 @@ class TextEditorRegistry {
     }
     this.editorsWithMaintainedConfig.add(editor)
 
-    this.updateEditorSettingsForLanguageMode(editor)
-    this.subscribeToSettingsForEditorScope(editor)
+    this.updateAndMonitorEditorSettings(editor)
     const languageChangeSubscription = editor.buffer.onDidChangeLanguageMode((newLanguageMode, oldLanguageMode) => {
-      this.updateEditorSettingsForLanguageMode(editor, oldLanguageMode)
-      this.subscribeToSettingsForEditorScope(editor)
+      this.updateAndMonitorEditorSettings(editor, oldLanguageMode)
     })
     this.subscriptions.add(languageChangeSubscription)
 
@@ -217,15 +215,21 @@ class TextEditorRegistry {
     atom.grammars.autoAssignLanguageMode(editor.getBuffer())
   }
 
-  updateEditorSettingsForLanguageMode(editor, oldLanguageMode) {
+  async updateAndMonitorEditorSettings (editor, oldLanguageMode) {
+    await this.initialPackageActivationPromise
+    this.updateEditorSettingsForLanguageMode(editor, oldLanguageMode)
+    await this.subscribeToSettingsForEditorScope(editor)
+  }
+
+  updateEditorSettingsForLanguageMode (editor, oldLanguageMode) {
     const newLanguageMode = editor.buffer.getLanguageMode()
 
     if (oldLanguageMode) {
-      const newSettings = this.textEditorParamsForScope(newLanguageMode.scopeDescriptor);
-      const oldSettings = this.textEditorParamsForScope(oldLanguageMode.scopeDescriptor);
+      const newSettings = this.textEditorParamsForScope(newLanguageMode.rootScopeDescriptor)
+      const oldSettings = this.textEditorParamsForScope(oldLanguageMode.rootScopeDescriptor)
 
       const updatedSettings = {}
-      for (const [settingsKey, paramName] of EDITOR_PARAMS_BY_SETTING_KEY) {
+      for (const [, paramName] of EDITOR_PARAMS_BY_SETTING_KEY) {
         // Update the setting only if it has changed between the two language
         // modes.  This prevents user-modified settings in an editor (like
         // 'softWrapped') from being reset when the language mode changes.
@@ -237,15 +241,12 @@ class TextEditorRegistry {
       if (_.size(updatedSettings) > 0) {
         editor.update(updatedSettings)
       }
-    }
-    else {
-      editor.update(this.textEditorParamsForScope(newLanguageMode.scopeDescriptor))
+    } else {
+      editor.update(this.textEditorParamsForScope(newLanguageMode.rootScopeDescriptor))
     }
   }
 
-  async subscribeToSettingsForEditorScope (editor, newLanguageMode, oldLanguageMode) {
-    await this.initialPackageActivationPromise
-
+  async subscribeToSettingsForEditorScope (editor) {
     const scopeDescriptor = editor.getRootScopeDescriptor()
     const scopeChain = scopeDescriptor.getScopeChain()
 
