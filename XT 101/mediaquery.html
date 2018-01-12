@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Understanding media query</title>
+	<link rel="stylesheet" href="">
+	<style>
+		@media screen{
+			body{
+				background-color: grey;
+			}
+				 	
+		h1{
+			text-align: center;
+			color: green;
+			
+		}
+		img{
+			height: 150px;
+		}
+	}
+	@media print{
+			body{
+				background-color: grey;
+			}
+				 	
+		h1{
+			text-align: center;
+			color: green;
+			
+		}
+		img{
+			/*height: 150px;*/
+			display: none;
+		}
+	}
+	@media(min-width: 375px)
+	{
+		body{ background-color: darkblue; }
+		h1{
+			text-align: center;
+			color: #e52325;
+		}
+		img{
+			width: 150px;
+			height: 150px;
+			border: 1px solid gold;
+		}
+	}
+		@media(min-width: 1024px)
+		{
+			body{
+				background-color: red;
+			}
+				h1{
+                      text-align: center;
+			          color: blue;
+				}
+		img{
+			width: 150px;
+		    }
+		}
+	</style>
+</head>
+<body>
+	<h1>Understanding Media Query</h1>
+	<img src="images/cake.jpg" alt="cake">
+	<a href="javascript:window.print()">print</a>
+</body>
+</html>

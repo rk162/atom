@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Understanding Box Model</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+		/* *{
+			border: 1px solid blue;
+		}*/
+		/*a{
+			text-decoration:none;
+		}*/
+		a.clearTextDecor{
+			text-decoration:none;
+			padding: 10px 20px 10px 30px;	
+            border: 1px solid gold;
+            margin: 0 20px 0 40px;
+				}
+		.button{
+			border: 2px solid red;
+			border-radius: 5px;
+		}
+		.button.infoButton{
+			font-size:1.4em;
+			background-color: #3c3;
+		}
+		.button.warnButton{
+			font-size:1.4em;
+			background-color: #ff5050;
+		}
+		.displayInline{
+			display:inline;
+
+		}
+		.parent{
+			color: blue !important;
+			font-size: 1.2em;
+		}
+		.parent.child{
+			color:magenta;
+            font-size: 1.4em;
+		}
+	</style>
+</head>
+<body>
+	<!-- Info Button can only be applied to an element which has button class otherwise it will not have any effect -->
+	<h1 class="clearTextDecor infoButton">
+		Box Model
+	</h1>
+	<nav style="border: 1px solid green;">
+		<ul style="margin: 25px 0 25px 0;">
+				<li class="displayInline"><a href="" class="clearTextDecor">Home</a></li>
+				<!-- <li class="displayInline" style="display:none;"><a href="" class="clearTextDecor">Client</a></li>  -->  <!-- In display:none; sapce is not reserved but in visibility:hidden; space is reserved for the element -->
+				<li class="displayInline" style="visibility:hidden;"><a href="" class="clearTextDecor">Client</a></li>
+				<li class="displayInline"><a href="" class="clearTextDecor">Contact</a></li>
+			</ul>	
+	</nav>
+	<button class="button">Clear</button>
+	<button class="button infoButton">Are you sure</button>
+	<button class="button warnButton">Are you sure</button>
+
+	<div class="parent">
+		<span>Hello</span>
+		<span class="child">World</span>
+		<span style="color:#6f3;">Thank</span>
+		<span>You</span>
+	</div>
+</body>
+</html>

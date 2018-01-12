@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Media Query Breakpoints</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+	.wrapperContent{
+             height: 500px;
+             display: flex;
+		}
+		.content{
+			height: 500px;
+			width: 100%;
+			margin: 0 20px 0 20px;
+			border: 3px solid magenta;
+			flex-direction: column;
+		}
+	@media only screen and (min-width: 768px){
+			body{
+				background-color: grey;
+			}
+				 	
+		h1{
+			text-align: center;
+			color: green;
+			
+		}
+	}
+	@media only screen and (max-width: 767px){
+			body{
+				background-color: blue;
+			}
+				 	
+		h1{
+			text-align: center;
+			color: green;
+		}
+             .content{
+             	width: 100%;
+             }
+	}
+	@media only screen and (min-width: 1176px){
+			body{
+				background-color: grey;
+			}
+				 	
+		h1{
+			text-align: center;
+			color: green;
+		}
+	}
+	@media print{
+		body{
+			background-color: none;
+		}
+		h1{
+			text-align: center;
+			color: yellow;
+			text-decoration: underline;
+		}
+		.content{
+             	width: 100%;
+             	border: none;
+             }
+	}
+	</style>
+</head>
+<body>
+	      
+	    <h1>Understanding Media Query</h1>
+		<div class="wrapperContent">
+		<div class="content">
+        <article class="art"> <a href="speakers.html"> <h2 style="color: darkblue; text-decoration: underline;">Speakers</h2></a> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ex, molestiae! Eligendi harum dolorum, et veritatis autem excepturi nobis rem ad quisquam saepe. Magnam voluptatum recusandae corporis id similique provident!</article>
+		</div>
+		<div class="content"><article class="art"><a href="schedule.html"><h2 style="color: darkblue; text-decoration: underline;">Schedule</h2></a> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ex, molestiae! Eligendi harum dolorum, et veritatis autem excepturi nobis rem ad quisquam saepe. Magnam voluptatum recusandae corporis id similique provident!</article></div>
+	</div>
+	<a href="javascript:window.print()">print</a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Understanding Flex Model</title>
+	<link rel="stylesheet" href="">
+	<base href="images/">
+	<style type="text/css">
+		.wrapper{
+			width: 70%;
+			height: 200px;
+			display: flex;
+			border: 1px solid blue;
+		}
+		.direction{
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+		}
+		.revdirection{
+			flex-direction: row-reverse;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.thumbnail{
+			height: 100px;
+			width: 100px;
+			border: 1px solid blue;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper direction">
+		<img src="cake.jpg" alt="cake" class="thumbnail">
+		<img src="cake02.jpg" alt="cake" class="thumbnail">
+		<img src="cake03.jpg" alt="cake" class="thumbnail">
+		<img src="cake04.jpg" alt="cake" class="thumbnail">
+	</div>
+	<div class="wrapper revdirection">
+		<img src="cake.jpg" alt="cake" class="thumbnail" style="order:3">
+		<img src="cake02.jpg" alt="cake" class="thumbnail" style="order:4">
+		<img src="cake03.jpg" alt="cake" class="thumbnail" style="order:1">
+		<img src="cake04.jpg" alt="cake" class="thumbnail" style="order:2">
+	</div>
+</body>
+</html>

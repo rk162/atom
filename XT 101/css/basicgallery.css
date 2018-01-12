@@ -1,0 +1,161 @@
+
+
+.header
+{
+    display: flex;
+
+    width: 100%;
+    height: 80px;
+
+    border: 3px solid lightgreen;
+    border-radius: 25px;
+    background: -webkit-repeating-linear-gradient(80deg, pink,yellow 60%,green);
+}
+.head
+{
+    font-family: 'verdana';
+    font-weight: bolder;
+    line-height: 30px;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: #09f;
+}
+.container
+{
+    display: flex;
+
+    width: 100%;
+
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.content
+{
+    width: 25%;
+    height: 100px;
+
+   
+
+    border: 1px solid green;
+    border-radius: 5px;
+}
+.thumbnail
+    {
+    	 transition: all 1s;
+        width: 100%;
+        height: 100px;
+        cursor: pointer;
+
+    }
+.footer
+{
+    font-family: 'arial';
+    font-size: .8em;
+
+    width: 100%;
+    height: 20px;
+
+    text-align: center;
+
+    color: #039;
+}
+
+.thumbnail:hover
+{
+    width: 120%;
+    height: 150px;
+
+
+    /*transform: rotate(6deg);*/
+    transform-origin: bottom left;
+    transform: translate(-10px,-20px);
+    border-radius: 25px;
+}
+@media only screen and (max-width: 480px)
+{
+    .container
+    {
+        flex-direction: column;
+
+        margin: 0 10px 10px 10px;
+    }
+    .content
+    {
+        width: 70%;
+        height: 100px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .thumbnail
+    {
+        width: 100%;
+        height: 100px;
+    }
+}
+@media only screen and (min-width: 481px) and (max-width: 767px)
+{
+    .container
+    {
+        flex-direction: column;
+
+        margin: 0 10px 10px 10px;
+    }
+    .content
+    {
+        width: 60%;
+        height: 100px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .thumbnail
+    {
+        width: 100%;
+        height: 100px;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px)
+{
+    .container
+    {
+        margin: 0 10px 10px 10px;
+
+        flex-flow: row wrap;
+    }
+    .content
+    {
+        width: 40%;
+        height: 100px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .thumbnail
+    {
+        width: 100%;
+        height: 100px;
+    }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1800px)
+{
+    .container
+    {
+        margin: 0 10px 10px 10px;
+
+        flex-flow: row wrap;
+    }
+    .content
+    {
+        width: 25%;
+        height: 100px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .thumbnail
+    {
+        width: 100%;
+        height: 100px;
+    }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Understanding Float and Positioning</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+	.container{
+            width: 50%;
+            height: 104px;
+            background-color: #cff;
+            border: 2px solid #f00;
+            position: absolute;
+	}
+	.content{
+              width: 100px;
+              height: 100px;
+	}
+	.posRight{
+             position:absolute;
+            
+             right: 0px;
+		}
+	.placeRight{
+           float:right;
+	       }
+	</style>
+</head>
+<body>
+	<!-- float works with child elements and adjusts the position, absolute works without taking other child elements into context. -->
+	<div class="container">
+		<img src="images/cake.jpg" alt="cake" class="content posRight" />
+		<img src="images/cake.jpg" alt="cake" class="content posRight" />
+	</div>
+</body>
+</html>

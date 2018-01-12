@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Multiple Gallery Example</title>
+	<link rel="stylesheet" href="">
+	<base href="images/">
+	<style type="text/css">
+		.container{
+			display: flex;
+			/*border: 1px solid blue;*/
+			flex-wrap: wrap;
+			justify-content: center;
+			font-family: 'Arial';
+		}
+
+		.topcontent{
+			width: 87%;
+			height: 250px;
+			/*border: 1px solid red;*/
+		}
+
+		.content{
+			width: 15%;
+			height: 250px;
+			/*border: 1px solid red;*/
+			margin: 20px 20px 20px 20px;
+			font-size: 0.7em;
+		}
+
+		.imgsize{
+			width: 90%;
+			height: 40%;
+			border-radius: 5px;
+		}
+
+
+		@media only screen and (max-width: 1024px) and (min-width: 776px){
+			.topcontent{
+			width: 85%;
+			height: 300px;
+		}
+
+		.content{
+			width: 25%;
+			height: 300px;
+			margin: 20px 20px 20px 20px;
+		}
+	}
+
+		@media only screen and (max-width: 775px) and (min-width: 481px){
+			.topcontent{
+			width: 65%;
+			height: 350px;
+		}
+
+		.content{
+			width: 30%;
+			height: 350px;
+			margin: 20px 20px 20px 20px;
+		}
+
+	}
+
+		@media only screen and (max-width: 480px) and (min-width: 320px){
+			.topcontent{
+				width: 80%;
+				height: 400px;
+			}
+
+			.content{
+				width: 80%;
+				height: 400px;
+				margin: 20px 20px 20px 20px;
+			}
+
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="topcontent">
+			<h1 style="text-shadow: 2px 2px 2px #a8ffcc;">Best Locations to Visit in Himachal</h1>
+		<p>Himachal Pradesh is synonymous with scenic beauty, serene landscape and adventure sports. Literally Himachal means “the land of snow”. Situated in the western Himalaya, Himachal Pradesh has several hill stations which are the most appropriate destination to find respite from the scorching summer heat.</p>
+		</div>
+
+		<div class="content">
+			<img class="imgsize" src="manali.jpg" alt="Manali">
+			<h1>
+				Manali
+			</h1>
+			<p>
+				Manali is a high-altitude Himalayan resort town in India’s northern Himachal Pradesh state. It has a reputation as a backpacking center and honeymoon destination.
+			</p>
+		</div>
+
+		<div class="content">
+			<img class="imgsize" src="manimahesh.jpg" alt="ManiMahesh Lake">
+			<h1>Manimahesh Lake</h1>
+			<p>Manimahesh Lake is a high altitude lake situated close to the Manimahesh Kailash Peak in the Pir Panjal Range of the Himalayas.</p>
+		</div>
+
+		<div class="content">
+			<img class="imgsize" src="hidimba.jpg" alt="Hidimba Temple">
+			<h1>Hidimba Temple</h1>
+			<p>Hidimbi Devi Temple, also known variously as the Hadimba Temple, is located in Manāli, a hill station in the State of Himāchal Pradesh in north India.</p>
+		</div>
+
+		<div class="content">
+			<img class="imgsize" src="jogini.jpg" alt="Jogini Fall">
+			<h1>Jogini Falls</h1>
+			<p>At a distance of 4 Km from Vashisht Temple and 7.5 Km from Manali Bus Stand, Jogini or Jogni Falls is a beautiful waterfall situated near Vashisht Village in Himachal Pradesh.</p>
+		</div>
+
+		<div class="content">
+			<img class="imgsize" src="triun.jpg" alt="Triund Peak">
+			<h1>Triund Peak</h1>
+			<p>Triund is a small hill in the Kangra district in the state of Himachal Pradesh, India. The Triund Hill Station is a part of Dharamkot.</p>
+		</div>
+
+		<div class="content">
+			<img class="imgsize" src="prashar.jpg" alt="Prashar Lake">
+			<h1>Prashar Lake</h1>
+			<p>Prashar Lake lies 49 km north of Mandi, Himachal Pradesh, India, with a three storied pagoda-like temple dedicated to the sage Prashar.</p>
+		</div>
+
+		<div class="content">
+			<img class="imgsize" src="ridge.jpg" alt="The Ridge Shimla">
+			<h1>The Ridge, Shimla</h1>
+			<p>The Ridge road is a large open space, located in the heart of Shimla, the capital city of Himachal Pradesh, India.</p>
+		</div>
+
+		<div class="content">
+			<img class="imgsize" src="rohtangpass.jpg" alt="Rohtang Pass">
+			<h1>Rohtang Pass</h1>
+			<p>Rohtang Pass, is a high mountain pass on the eastern Pir Panjal Range of the Himalayas around 51 km from Manali.</p>
+		</div>
+
+		<div class="content">
+			<img class="imgsize" src="spiti.jpg" alt="Spiti Valley">
+			<h1>Spiti Valley</h1>
+			<p>The Spiti Valley is a cold desert mountain valley located high in the Himalaya mountains in the north-eastern part of the Indian state of Himachal Pradesh.</p>
+		</div>
+
+		<div class="content">
+			<img class="imgsize" src="khajiar.jpg" alt="Khajjiar Lake">
+			<h1>Khajjiar Lake</h1>
+			<p>Khajjiar Lake is situated in Khajjiar, in Chamba district of Himachal Pradesh, India. It is situated at a height of around 1,920 m above sea level between Dalhousie and Chamba Town.</p>
+		</div>
+
+	</div>
+</body>
+</html>

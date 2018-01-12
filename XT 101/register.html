@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Registration</title>
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+body {
+    background-image: url("images/background.jpg");
+    
+
+}
+</style>
+</head>
+<body>
+
+	<h1 class="centerText redColor">Registration</h1>
+     <fieldset class="panel">
+     	<form action="PageSemantics.html" method="get">
+     		<div class="pad">
+     			<label for="firstName">First Name</label>
+     			<input type="text" name="firstName" id="firstName" style="float:right;">
+     		</div>
+     		<div class="pad">
+     			<label for="lastName">Last Name</label>
+     			<input type="text" name="lastName" id="lastName" style="float:right;">
+     		</div>
+     		<div class="pad">
+     			<label for="passWord">Password</label>
+     			<input type="password" name="passWord" id="passWord" size="8" maxlength="8" style="float:right;"/>
+     		</div>
+     			<div class="pad">
+     				<label for="location">Location</label>
+     			<select name="location" style="float:right;">
+     				<option selected="selected">Chennai</option>
+     				<option>Delhi</option>
+     				<option>Mumbai</option>
+     				<option>Kolkata</option>
+     				<option>Bengaluru</option>
+     			</select>
+     		</div>
+     			<div class="pad">
+     				<label for="hobbies">Hobbies</label>
+     			<input type="checkbox" name="hobbies" value="Yoga">Yoga
+     			<input type="checkbox" name="hobbies" value="Sports">Sports
+     			<input type="checkbox" name="hobbies" value="Reading">Reading
+     		</div>
+     			<div class="pad">
+     				<label for="age">Age</label>
+     			<input type="radio" name="age" value="Greater than 18">Greater than 18
+     			<input type="radio" name="age" value="Less than 18">Less than 18
+     		</div>
+     			<div class="pad">
+     				<label for="comment">Comment</label>
+     			<textarea name="comment" id="comment" cols="30" rows="10" style="float:right;"></textarea>
+     		</div>
+     		<div>
+			<input type="submit" value="Register"/>
+			<input type="reset" value="Clear Form"/>
+		</div>
+     		
+     	</form>
+
+     </fieldset>
+</body>
+</html>

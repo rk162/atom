@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Understanding Flex Grow</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+		.wrapper{
+              display: flex;
+              margin: 10px 10px 10px 10px;
+              border: 1px solid #09f;
+          }
+		.item{
+              height: 100px;
+              width: 100px;
+              border: 3px solid magenta;
+              margin: 10px 10px 10px 10px;
+             
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="item" style="flex-basis: 0; flex-grow: 2;"></div>
+		<div class="item" style="flex-basis: 0; flex-grow: 3;"></div>
+		<div class="item" style="flex-basis: 0; flex-grow: 1;"></div>
+	</div>
+	<div class="wrapper">
+		<div class="item" style="flex-basis: 0; flex-grow: 1;"></div>
+		<div class="item" style="flex-basis: 0; flex-grow: 3;"></div>
+		<div class="item" style="flex-basis: 0; flex-grow: 2;"></div>
+	</div>
+	<div class="wrapper">
+		<div class="item" style="flex-basis: 0; flex-grow: 1;"></div>
+		<div class="item" style="flex-basis: 0; flex-grow: 2;"></div>
+		<div class="item" style="flex-basis: 0; flex-grow: 3;"></div>
+	</div>
+</body>
+</html>

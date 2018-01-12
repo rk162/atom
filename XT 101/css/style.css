@@ -1,0 +1,65 @@
+/*
+Class Selector
+*/
+
+
+.table
+{
+    margin: 20px auto;
+
+    border-collapse: collapse;
+
+    border: 2px solid blue;
+}
+/*
+Element Name Selector
+*/
+
+td,
+th
+{
+    border: 2px solid blue;
+}
+
+.centerText
+{
+    text-align: center;
+}
+
+.redColor
+{
+    color: red;
+}
+
+.logoImage
+{
+    width: 100px;
+    height: 100px;
+
+    border: 2px solid gold;
+}
+
+.inlineElement
+{
+    display: inline;
+}
+.links
+{
+    font-size: 1.4em;
+
+    padding: 10px 10px;
+
+    text-decoration: none;
+
+    color: #ff0066;
+}
+.panel{
+	width: 400px;
+	height: 450px;
+	background-color: greenyellow;
+	margin: auto;
+}
+
+.pad{
+	padding: 10px 20px 10px 20px;
+}
